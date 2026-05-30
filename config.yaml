@@ -1,0 +1,72 @@
+# Reddit Scanner Configuration
+# ─────────────────────────────────────────────────────────────────────────────
+# HOW TO GET REDDIT CREDENTIALS
+#   1. Go to https://www.reddit.com/prefs/apps  (once your app is approved)
+#   2. Under your app you'll see:
+#        - A short string beneath the app name  → that is your client_id
+#        - "secret" field                        → that is your client_secret
+#   3. user_agent must follow Reddit's required format:
+#        <platform>:<app_id>:<version> (by u/<your_reddit_username>)
+#      Example: "script:my_reddit_scanner:1.0 (by u/dima_rc)"
+# ─────────────────────────────────────────────────────────────────────────────
+
+reddit:
+  client_id: "YOUR_CLIENT_ID_HERE"
+  client_secret: "YOUR_CLIENT_SECRET_HERE"
+  username: "YOUR_REDDIT_USERNAME"
+  password: "YOUR_REDDIT_PASSWORD"
+  user_agent: "script:reddit_scanner:1.0 (by u/YOUR_REDDIT_USERNAME)"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# HOW TO GET TELEGRAM CREDENTIALS
+#   1. Message @BotFather on Telegram → /newbot → follow prompts → copy token
+#   2. Message @userinfobot on Telegram → it replies with your chat_id
+# ─────────────────────────────────────────────────────────────────────────────
+
+telegram:
+  bot_token: "YOUR_BOT_TOKEN_HERE"
+  chat_id: "YOUR_CHAT_ID_HERE"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SCAN SETTINGS
+# ─────────────────────────────────────────────────────────────────────────────
+
+scan:
+  posts_per_subreddit: 25          # How many recent posts to fetch per subreddit
+  scan_interval_minutes: 30        # Re-scan interval in --watch mode
+  search_in_body: true             # Also match keywords in post body/selftext
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SUBREDDITS TO MONITOR (without the r/ prefix)
+# ─────────────────────────────────────────────────────────────────────────────
+
+subreddits:
+  - MachineLearning
+  - LocalLLaMA
+  - selfhosted
+  - homelab
+  - Python
+
+# ─────────────────────────────────────────────────────────────────────────────
+# KEYWORDS  (case-insensitive; a post matches if ANY keyword is found)
+# ─────────────────────────────────────────────────────────────────────────────
+
+keywords:
+  - claude
+  - anthropic
+  - llm
+  - self-hosted
+  - docker
+  - ollama
+  - mistral
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FILTERS
+# ─────────────────────────────────────────────────────────────────────────────
+
+filters:
+  min_score: 0                     # Skip posts below this upvote score
+  exclude_flairs: []               # Skip posts with these flairs, e.g. ["Meme"]
+
+# Internal state file — tracks seen post IDs to avoid duplicate notifications
+state_file: ".reddit_scanner_state.json"
